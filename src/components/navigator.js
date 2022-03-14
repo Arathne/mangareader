@@ -1,6 +1,7 @@
 import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
-import { NavigationActions } from 'react-navigation';
+
+import { StackActions, NavigationActions } from 'react-navigation';
 
 import Discover from './../screens/discover.js';
 import Library from './../screens/library.js';
@@ -46,11 +47,11 @@ const container = createAppContainer( stack )
 */
 let navigator_ref = null;
 
-function setTopLevelNavigator(ref) {
+function setTopLevelNavigator (ref) {
   navigator_ref = ref;
 }
 
-function navigate(routeName, params) {
+function navigate (routeName, params) {
   navigator_ref.dispatch(
     NavigationActions.navigate({
       routeName,
@@ -59,9 +60,18 @@ function navigate(routeName, params) {
   );
 }
 
+function reset (screen_name) {
+  navigator_ref.dispatch(
+    StackActions.reset({
+      index: 0,
+      actions: [NavigationActions.navigate({ routeName: screen_name })],
+    })
+  );
+}
 
 module.exports = {
   container: container,
   setTopLevelNavigator: setTopLevelNavigator,
-  navigate: navigate
+  navigate: navigate,
+  reset: reset
 }

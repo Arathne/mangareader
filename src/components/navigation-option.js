@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Pressable, Image, StyleSheet, Text, View } from 'react-native';
 
 import Navigator from './navigator.js';
@@ -6,9 +6,15 @@ import Navigator from './navigator.js';
 export default function NavigationOption (props) {
   const [title, set_title] = useState(props.title)
   const [icon, set_icon] = useState(props.icon);
+  const [color, set_color] = useState(props.color);
+
+  useEffect( () => {
+    set_color(props.color);
+  }, [props.color])
 
   const on_pressed = () => {
-    Navigator.navigate(props.screen);
+    Navigator.reset(props.screen);
+    props.onPressed(props.screen);
   }
 
   return (
@@ -20,14 +26,18 @@ export default function NavigationOption (props) {
         <Image
           style={styles.icon}
           source={icon}
+          style={{...styles.icon, tintColor: color}}
         />
       </View>
-      <Text style={styles.text}> {title} </Text>
+      <Text style={{...styles.text, color: color}}> {title} </Text>
 
     </Pressable>
   );
 }
 
+function reset(index = 0, actions) {
+
+}
 
 const styles = StyleSheet.create({
   option: {
