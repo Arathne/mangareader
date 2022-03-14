@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { Pressable, Image, StyleSheet, Text, View } from 'react-native';
 
-export default function MenuIcon(props) {
+import Navigator from './navigator.js';
+
+export default function NavigationOption (props) {
   const [title, set_title] = useState(props.title)
   const [icon, set_icon] = useState(props.icon);
 
   const on_pressed = () => {
-    props.onPressed(props.title)
+    Navigator.navigate(props.screen);
   }
 
   return (
@@ -21,6 +23,7 @@ export default function MenuIcon(props) {
         />
       </View>
       <Text style={styles.text}> {title} </Text>
+
     </Pressable>
   );
 }
