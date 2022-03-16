@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Pressable, Image, StyleSheet, Text, View } from 'react-native';
 
 import Navigator from './navigator.js';
+import GlobalStyle from './../utils/global-style.js';
 
 export default function NavigationOption (props) {
   const [title, set_title] = useState(props.title)
@@ -13,7 +14,7 @@ export default function NavigationOption (props) {
   }, [props.color])
 
   const on_pressed = () => {
-    Navigator.reset(props.screen);
+    Navigator.navigate(props.screen);
     props.onPressed(props.screen);
   }
 
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
   },
   text: {
     textAlign: 'center',
-    fontSize: 10
+    fontSize: GlobalStyle.text1.size
   },
   icon: {
     height: '100%',

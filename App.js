@@ -1,17 +1,23 @@
 import 'react-native-gesture-handler';
 
-import React, { useState, useRef, useEffect } from 'react';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
+import React, { useEffect } from 'react';
+import { SafeAreaView, Platform, StyleSheet, View, StatusBar } from 'react-native';
 
 import NavigationBar from './src/components/navigation-bar.js';
 import Navigator from './src/components/navigator.js';
+import GlobalStyle from './src/utils/global-style.js'
 
 export default function App (props) {
+  useEffect( () => {
+    if (Platform.OS === 'android') {
+      StatusBar.setBackgroundColor(GlobalStyle.colors.color2);
+    }
+  }, [])
+
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <StatusBar style="auto" />
-      <View style={{flex: 1, backgroundColor: '#FF0000'}}>
+    <SafeAreaView style={styles.safe}>
+      <StatusBar style="auto" barStyle='light-content' />
+      <View style={{flex: 1, backgroundColor: '#000000'}}>
         <Navigator.container
           ref={ ref => Navigator.setTopLevelNavigator(ref) }
         />
@@ -27,5 +33,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#00FF00',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  safe: {
+    flex: 1,
+    backgroundColor: GlobalStyle.colors.color2,
   }
 });

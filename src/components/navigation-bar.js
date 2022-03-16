@@ -1,16 +1,18 @@
-import Icons from './../utils/icons.js';
 import NavigationOption from './navigation-option.js';
 import { StyleSheet, View } from 'react-native';
 import React, { useState } from 'react';
+
+import Icons from './../utils/icons.js';
+import GlobalStyle from './../utils/global-style.js';
 
 export default function NavigationBar (props) {
   const [current_screen, set_current_screen] = useState('library');
 
   const get_color =(screen_name) => {
     if (screen_name === current_screen )
-      return '#FFFF00'
+      return GlobalStyle.colors.selected
     else
-      return '#00FFFF'
+      return GlobalStyle.colors.color1
   }
 
   const screen_update = (new_screen) => {
@@ -21,6 +23,13 @@ export default function NavigationBar (props) {
 
   return (
     <View style={styles.root}>
+      <NavigationOption
+        title='random'
+        icon={Icons.random}
+        screen='random'
+        color={get_color('random')}
+        onPressed={screen_update}
+      />
       <NavigationOption
         title='discover'
         icon={Icons.discover}
@@ -43,13 +52,6 @@ export default function NavigationBar (props) {
         onPressed={screen_update}
       />
       <NavigationOption
-        title='random'
-        icon={Icons.random}
-        screen='random'
-        color={get_color('random')}
-        onPressed={screen_update}
-      />
-      <NavigationOption
         title='settings'
         icon={Icons.settings}
         screen='settings'
@@ -65,7 +67,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignContent: 'space-around',
     justifyContent: 'space-around',
-    height: 49,
-    backgroundColor: '#0000FF'
+    height: GlobalStyle.dynamic_size(49),
+    backgroundColor: GlobalStyle.colors.color2
   }
 });

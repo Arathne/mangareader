@@ -1,6 +1,5 @@
 import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
-
 import { StackActions, NavigationActions } from 'react-navigation';
 
 import Discover from './../screens/discover.js';
