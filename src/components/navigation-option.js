@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Pressable, Image, StyleSheet, Text, View } from 'react-native';
 
-import Navigator from './navigator.js';
+import Navigator from './../utils/navigator.js';
 import GlobalStyle from './../utils/global-style.js';
 
 export default function NavigationOption (props) {

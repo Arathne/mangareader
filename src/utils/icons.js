@@ -6,4 +6,6 @@ module.exports = {
   search: require(`${ICONS_FOLDER}/search.png`),
   settings: require(`${ICONS_FOLDER}/settings.png`),
   random: require(`${ICONS_FOLDER}/random.png`),
+  logo: require(`${ICONS_FOLDER}/logo.png`),
+  views: require(`${ICONS_FOLDER}/views.png`),
 }

@@ -1,7 +1,26 @@
 import Parser from './../parser.js';
 
-async function latest_releases (page = 1) {
+async function recently_updated (page = 1) {
   const url = `https://mangakakalot.is/latest?sort=default&page=${page}`;
+  return query_list(url);
+}
+
+async function new_releases (page = 1) {
+  const url = `https://mangakakalot.is/new?sort=default&page=${page}`;
+  return query_list(url);
+}
+
+async function completed (page = 1) {
+  const url = `https://mangakakalot.is/completed?sort=default&page=${page}`;
+  return query_list(url);
+}
+
+async function most_popular (page = 1) {
+  const url = `https://mangakakalot.is/hot?sort=default&page=${page}`;
+  return query_list(url);
+}
+
+async function query_list (url) {
   const html = await Parser.fetchHtml(url);
   const dom = Parser.htmlToDom(html);
 
@@ -19,10 +38,13 @@ async function latest_releases (page = 1) {
     };
     manga_data.push(data);
   }
-  
+
   return manga_data;
 }
 
 module.exports = {
-  latestReleases: latest_releases
+  recentlyUpdated: recently_updated,
+  newReleases: new_releases,
+  completed: completed,
+  mostPopular: most_popular,
 }

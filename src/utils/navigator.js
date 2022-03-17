@@ -16,12 +16,12 @@ const root_nav_options = {
 }
 
 const screens = {
-  library: {
-    screen: Library,
-    navigationOptions: root_nav_options
-  },
   discover: {
     screen: Discover,
+    navigationOptions: root_nav_options
+  },
+  library: {
+    screen: Library,
     navigationOptions: root_nav_options
   },
   search: {

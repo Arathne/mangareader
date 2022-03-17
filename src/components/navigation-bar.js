@@ -1,14 +1,19 @@
 import NavigationOption from './navigation-option.js';
 import { StyleSheet, View } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Icons from './../utils/icons.js';
 import GlobalStyle from './../utils/global-style.js';
+import Navigator from './../utils/navigator.js';
 
 export default function NavigationBar (props) {
-  const [current_screen, set_current_screen] = useState('library');
+  const [current_screen, set_current_screen] = useState(props.initialScreen);
 
-  const get_color =(screen_name) => {
+  useEffect(() => {
+    Navigator.navigate(props.initialScreen);
+  }, []);
+
+  const get_color = (screen_name) => {
     if (screen_name === current_screen )
       return GlobalStyle.colors.selected
     else
@@ -67,7 +72,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignContent: 'space-around',
     justifyContent: 'space-around',
-    height: GlobalStyle.dynamic_size(49),
+    height: GlobalStyle.dynamicSize(49),
     backgroundColor: GlobalStyle.colors.color2
   }
 });

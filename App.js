@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { SafeAreaView, Platform, StyleSheet, View, StatusBar } from 'react-native';
 
 import NavigationBar from './src/components/navigation-bar.js';
-import Navigator from './src/components/navigator.js';
+import Navigator from './src/utils/navigator.js';
 import GlobalStyle from './src/utils/global-style.js'
 
 export default function App (props) {
@@ -22,7 +22,7 @@ export default function App (props) {
           ref={ ref => Navigator.setTopLevelNavigator(ref) }
         />
       </View>
-      <NavigationBar />
+      <NavigationBar initialScreen='discover' />
     </SafeAreaView>
   );
 }
