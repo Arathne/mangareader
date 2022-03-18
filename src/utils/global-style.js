@@ -7,7 +7,7 @@ module.exports = {
     selected: '#FFA500',
     color1: '#bfbfbf',
     color2: '#000000',
-    color3: '#222222',
+    color3: '#404040',
     color4: 'white',
   },
   text1: {

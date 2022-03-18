@@ -1,11 +1,12 @@
 import 'react-native-gesture-handler';
 
 import React, { useEffect } from 'react';
-import { SafeAreaView, Platform, StyleSheet, View, StatusBar } from 'react-native';
+import { SafeAreaView, Platform, StyleSheet, View, StatusBar, ImageBackground } from 'react-native';
 
 import NavigationBar from './src/components/navigation-bar.js';
 import Navigator from './src/utils/navigator.js';
 import GlobalStyle from './src/utils/global-style.js'
+import Icons from './src/utils/icons.js'
 
 export default function App (props) {
   useEffect( () => {
@@ -17,7 +18,7 @@ export default function App (props) {
   return (
     <SafeAreaView style={styles.safe}>
       <StatusBar style="auto" barStyle='light-content' />
-      <View style={{flex: 1, backgroundColor: '#000000'}}>
+      <View style={{flex: 1}}>
         <Navigator.container
           ref={ ref => Navigator.setTopLevelNavigator(ref) }
         />
@@ -37,5 +38,5 @@ const styles = StyleSheet.create({
   safe: {
     flex: 1,
     backgroundColor: GlobalStyle.colors.color2,
-  }
+  },
 });

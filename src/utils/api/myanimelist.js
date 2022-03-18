@@ -26,7 +26,7 @@ function format_array (array) {
   return obj;
 }
 
-async function get_manga_by_ranking (ranking = 'all', limit = 28, offset = 0) {
+async function get_manga_by_ranking (ranking = 'all', limit = 16 , offset = 0) {
   const url = `${URL}/ranking?ranking_type=${ranking}&limit=${limit}&offset=${offset}&fields=${FIELDS}`;
   const response = await fetch_mal(url);
   return format_array(response.data);

@@ -7,5 +7,5 @@ module.exports = {
   settings: require(`${ICONS_FOLDER}/settings.png`),
   random: require(`${ICONS_FOLDER}/random.png`),
   logo: require(`${ICONS_FOLDER}/logo.png`),
-  views: require(`${ICONS_FOLDER}/views.png`),
+  background: require(`${ICONS_FOLDER}/background.png`),
 }

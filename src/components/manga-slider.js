@@ -51,7 +51,7 @@ export default function MangaSlider (props) {
 
 const styles = StyleSheet.create({
   root: {
-    backgroundColor: 'rgba(0, 0, 0, 0.4)',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
     paddingTop: GlobalStyle.dynamicSize(3),
     paddingBottom: GlobalStyle.dynamicSize(5),
     marginTop: GlobalStyle.dynamicSize(4),
