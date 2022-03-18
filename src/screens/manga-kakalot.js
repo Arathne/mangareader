@@ -5,26 +5,22 @@ import Spacer from './../components/spacer.js';
 import MangaSlider from './../components/manga-slider.js';
 
 import Icons from './../utils/icons.js';
-import Parser from './../utils/parsers/manga-kakalot.js';
+import Query from './../utils/query.js';
 
 export default function MangaKakalot () {
-  const [recently_updated, set_recently_updated] = useState([]);
-  const [new_releases, set_new_releases] = useState([]);
-  const [completed, set_completed] = useState([]);
-  const [most_popular, set_most_popular] = useState([]);
+  const [top_manga, set_top_manga] = useState([]);
+  const [top_novels, set_top_novels] = useState([]);
+  const [doujin, set_doujin] = useState([]);
 
   useEffect( () => {
-    Parser.recentlyUpdated().then((data) => {
-      set_recently_updated(data);
+    Query.getTopManga().then( data => {
+      set_top_manga(data);
     });
-    Parser.newReleases().then((data) => {
-      set_new_releases(data);
+    Query.getTopNovels().then( data => {
+      set_top_novels(data);
     });
-    Parser.completed().then((data) => {
-      set_completed(data);
-    });
-    Parser.mostPopular().then((data) => {
-      set_most_popular(data);
+    Query.getDoujin().then( data => {
+      set_doujin(data);
     });
   }, []);
 
@@ -39,30 +35,9 @@ export default function MangaKakalot () {
         </View>
       </View>
       <ScrollView style={styles.scroll}>
-        <Text style={styles.h1}> Recently Updated </Text>
-        <MangaSlider
-          manga={recently_updated}
-          id='recent'
-        />
-        <Spacer />
-        <Text style={styles.h1}> New Releases </Text>
-        <MangaSlider
-          manga={new_releases}
-          id='new'
-        />
-        <Spacer />
-        <Text style={styles.h1}> Completed </Text>
-        <MangaSlider
-          manga={completed}
-          id='completed'
-        />
-        <Spacer />
-        <Text style={styles.h1}> Most Popular </Text>
-        <MangaSlider
-          manga={completed}
-          id='popular'
-        />
-        <Spacer />
+        <MangaSlider manga={top_manga} title='Top Manga' id='top-manga' />
+        <MangaSlider manga={top_novels} title='Top Novels' id='top-novels' />
+        <MangaSlider manga={doujin} title='Top Doujin' id='top-doujin' />
       </ScrollView>
     </View>
   )
@@ -92,9 +67,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: GlobalStyle.colors.color2,
   },
-  h1: {
-    color: GlobalStyle.colors.color4,
-    fontSize: GlobalStyle.dynamicSize(18),
-    padding: GlobalStyle.dynamicSize(4),
-  }
 });

@@ -1,4 +1,4 @@
-import Parser from './../parser.js';
+import Parser from './parser.js';
 
 async function recently_updated (page = 1) {
   const url = `https://mangakakalot.is/latest?sort=default&page=${page}`;
