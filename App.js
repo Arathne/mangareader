@@ -5,8 +5,9 @@ import { SafeAreaView, Platform, StyleSheet, View, StatusBar, ImageBackground } 
 
 import NavigationBar from './src/components/navigation-bar.js';
 import Navigator from './src/utils/navigator.js';
-import GlobalStyle from './src/utils/global-style.js'
-import Icons from './src/utils/icons.js'
+import GlobalStyle from './src/utils/global-style.js';
+import TitleBar from './src/components/title-bar.js';
+import Icons from './src/utils/icons.js';
 
 export default function App (props) {
   useEffect( () => {
@@ -19,9 +20,15 @@ export default function App (props) {
     <SafeAreaView style={styles.safe}>
       <StatusBar style="auto" barStyle='light-content' />
       <View style={{flex: 1}}>
-        <Navigator.container
-          ref={ ref => Navigator.setTopLevelNavigator(ref) }
-        />
+        <TitleBar />
+        <ImageBackground
+          style={styles.background}
+          source={Icons.background}
+        >
+          <Navigator.container
+            ref={ ref => Navigator.setTopLevelNavigator(ref) }
+          />
+        </ImageBackground>
       </View>
       <NavigationBar initialScreen='discover' />
     </SafeAreaView>
@@ -38,5 +45,12 @@ const styles = StyleSheet.create({
   safe: {
     flex: 1,
     backgroundColor: GlobalStyle.colors.color2,
+  },
+  background: {
+    marginTop: GlobalStyle.dynamicSize(40),
+    flex: 1,
+    backgroundColor: GlobalStyle.colors.color3,
+    resizeMode: 'stretch',
+    tintColor: GlobalStyle.colors.color1,
   },
 });

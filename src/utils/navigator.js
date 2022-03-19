@@ -1,4 +1,4 @@
-import { createStackNavigator } from 'react-navigation-stack';
+import { CardStyleInterpolators, createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
 import { StackActions, NavigationActions } from 'react-navigation';
 
@@ -7,18 +7,51 @@ import Library from './../screens/library.js';
 import Search from './../screens/search.js';
 import Random from './../screens/random.js';
 import Settings from './../screens/settings.js';
+import MangaDetails from './../screens/manga-details.js';
 
 /* creating navigation container
 */
-const root_nav_options = {
+
+const forFade = ({ current }) => ({
+  cardStyle: {
+    opacity: current.progress,
+  },
+});
+
+const animationConfig = {
+  animation: 'spring',
+  config: {
+    stiffness: 1000,
+    damping: 50,
+    mass: 3,
+    overshootClamping: false,
+    restDisplacementThreshold: 0.01,
+    restSpeedThreshold: 0.01,
+  }
+}
+
+const nav_options = {
   headerShown: false,
-  animationEnabled: false
+  animationEnabled: true,
+  gestureEnabled: true,
+  cardStyle: {
+    backgroundColor: 'transparent',
+  },
+
+  gestureEnabled: true,
+  gestureDirection: 'horizontal',
+  cardStyleInterpolator: forFade,
+
+}
+
+const root_nav_options = {
+  ...nav_options,
 }
 
 const screens = {
   discover: {
     screen: Discover,
-    navigationOptions: root_nav_options
+    navigationOptions: root_nav_options,
   },
   library: {
     screen: Library,
@@ -34,6 +67,10 @@ const screens = {
   },
   settings: {
     screen: Settings,
+    navigationOptions: root_nav_options
+  },
+  mangaDetails: {
+    screen: MangaDetails,
     navigationOptions: root_nav_options
   }
 }

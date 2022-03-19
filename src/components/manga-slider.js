@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { ScrollView, Pressable, Image, StyleSheet, View, Text } from 'react-native';
-import GlobalStyle from './../utils/global-style.js';
-import Icon from './../utils/icons.js'
-import MyAnimeList from './../utils/api/myanimelist.js';
+import { ScrollView, StyleSheet, View, Text } from 'react-native';
 
-export default function MangaSlider (props) {
+import GlobalStyle from './../utils/global-style.js';
+import MangaCover from './../components/manga-cover.js';
+
+export default function MangaSlider (props, {navigation}) {
   const [manga_list, set_manga_list] = useState(props.manga);
   const [id, set_id] = useState('');
   const [title, set_title] = useState(props.title);
@@ -17,21 +17,7 @@ export default function MangaSlider (props) {
 
   const list = manga_list.map( (manga, index) => {
     return (
-      <Pressable
-        style={styles.manga_root}
-        key={`${manga.title}-${index}-${id}`}
-      >
-        <Image
-          style={styles.manga_image}
-          source={{
-            uri: manga.main_picture.medium,
-            method: 'GET',
-            headers: {
-              'X-MAL-CLIENT-ID': MyAnimeList.clientId,
-            }
-          }}
-        />
-      </Pressable>
+      <MangaCover data={manga} key={`${manga}-${index}`} navigation={props.navigation} />
     );
   });
 
